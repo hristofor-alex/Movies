@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Movies</string>
+    <string name="back">Back</string>
+    <string name="age">13+</string>
+    <string name="name">Avengers:\nEnd Game</string>
+    <string name="category">Action, Adventure, Fantasy</string>
+    <string name="count">125</string>
+    <string name="reviews">Reviews</string>
+    <string name="discribe">After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos\' actions and restore balance to the universe.</string>
+    <string name="storyline">Storyline</string>
+    <string name="cast">Cast</string>
+    <string name="ruffalo">Mark Ruffalo</string>
+    <string name="movielist">Movie List</string>
+    <string name="nameMini">Avengers: End Game</string>
+    <string name="time">137 MIN</string>
 </resources>
