@@ -43,7 +43,7 @@ object DataSource {
         Movie(
             R.drawable.avengers_end_game,
             false,
-            "13+",
+            13,
             4,
             category = "Action, Adventure, Drama",
             reviews = "125 Reviews",
@@ -53,7 +53,7 @@ object DataSource {
         Movie(
             R.drawable.tenet,
             true,
-            "16+",
+            16,
             5,
             category = "Action, Sci-Fi, Thriller ",
             reviews = "98 Reviews",
@@ -63,7 +63,7 @@ object DataSource {
         Movie(
             R.drawable.black_widow,
             false,
-            "13+",
+            13,
             4,
             category = "Action, Adventure, Sci-Fi",
             reviews = "38 Reviews",
@@ -73,7 +73,7 @@ object DataSource {
         Movie(
             R.drawable.wonder_women,
             false,
-            "16+",
+            16,
             5,
             category = "Action, Adventure, Fantasy",
             reviews = "74 Reviews",
@@ -84,7 +84,7 @@ object DataSource {
         Movie(
             R.drawable.avengers_end_game,
             false,
-            "13+",
+            13,
             4,
             category = "Action, Adventure, Drama",
             reviews = "125 Reviews",
@@ -94,7 +94,7 @@ object DataSource {
         Movie(
             R.drawable.tenet,
             true,
-            "16+",
+            16,
             5,
             category = "Action, Sci-Fi, Thriller ",
             reviews = "98 Reviews",
@@ -104,7 +104,7 @@ object DataSource {
         Movie(
             R.drawable.black_widow,
             false,
-            "13+",
+            13,
             4,
             category = "Action, Adventure, Sci-Fi",
             reviews = "38 Reviews",
@@ -114,7 +114,7 @@ object DataSource {
         Movie(
             R.drawable.wonder_women,
             false,
-            "16+",
+            16,
             5,
             category = "Action, Adventure, Fantasy",
             reviews = "74 Reviews",

@@ -8,7 +8,6 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.hristoforalex.movies.OnMovieItemClicked
 import ru.hristoforalex.movies.R
 import ru.hristoforalex.movies.data.DataSource
 import ru.hristoforalex.movies.model.Movie
@@ -16,13 +15,13 @@ import ru.hristoforalex.movies.view.recyclers.AdapterActors
 
 class FragmentMovieDetails : Fragment() {
 
-    private var actorRecycler: RecyclerView? = null
-    private var movie: Movie? = null
+    private lateinit var actorRecycler: RecyclerView
+    private lateinit var movie: Movie
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        movie = arguments?.getParcelable("movie")
+        movie = arguments?.getParcelable("movie") ?: throw NullPointerException()
     }
 
     override fun onCreateView(
