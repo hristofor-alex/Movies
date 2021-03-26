@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
     android:paddingBottom="8dp"
     android:paddingStart="2dp"
     android:paddingEnd="2dp"
@@ -11,11 +14,10 @@
     android:background="@drawable/banner_mini_back">
 
     <ImageView
-
-        android:id="@+id/iv_banner"
+        android:id="@+id/iv_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/banner_mini"
+        android:src="@drawable/avengers_end_game"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,10 +27,10 @@
         android:layout_height="0dp"
         android:background="@drawable/ic_main_gradient"
         android:padding="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/iv_banner"
-        app:layout_constraintEnd_toEndOf="@id/iv_banner"
-        app:layout_constraintStart_toStartOf="@id/iv_banner"
-        app:layout_constraintTop_toTopOf="@id/iv_banner" />
+        app:layout_constraintBottom_toBottomOf="@id/iv_image"
+        app:layout_constraintEnd_toEndOf="@id/iv_image"
+        app:layout_constraintStart_toStartOf="@id/iv_image"
+        app:layout_constraintTop_toTopOf="@id/iv_image" />
 
     <TextView
         android:id="@+id/tv_age"
@@ -56,12 +58,12 @@
         android:textSize="14sp"
         app:layout_constrainedWidth="true"
         app:layout_constraintStart_toStartOf="@id/content_start"
-        app:layout_constraintTop_toBottomOf="@id/iv_banner" />
+        app:layout_constraintTop_toBottomOf="@id/iv_image" />
 
     <TextView
+        android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/time"
         android:textColor="@color/gray"
         android:textSize="10sp"
         android:fontFamily="@font/roboto_black"
@@ -80,7 +82,7 @@
         android:textSize="10sp"
         android:layout_marginBottom="16dp"
         app:layout_constraintStart_toStartOf="@id/content_start"
-        app:layout_constraintBottom_toBottomOf="@id/iv_banner"/>
+        app:layout_constraintBottom_toBottomOf="@id/iv_image"/>
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/rating"
