@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main"
-    tools:context=".MovieDetailsActivity">
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/iv_banner"
+            android:id="@+id/iv_image"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/orig"
@@ -66,7 +66,7 @@
             android:text="@string/age"
             android:textColor="@color/white"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/iv_banner"
+            app:layout_constraintBottom_toBottomOf="@id/iv_image"
             app:layout_constraintStart_toStartOf="@id/content_start"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.8" />
@@ -80,7 +80,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             android:textColor="@color/white"
             app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toBottomOf="@id/iv_banner"
+            app:layout_constraintBottom_toBottomOf="@id/iv_image"
             app:layout_constraintEnd_toStartOf="@id/content_end"
             app:layout_constraintStart_toStartOf="@id/content_start"
             app:layout_constraintTop_toBottomOf="@id/tv_age"
@@ -175,70 +175,7 @@
             app:layout_constraintStart_toStartOf="@+id/content_start"
             app:layout_constraintTop_toBottomOf="@+id/tv_discribe" />
 
-        <ImageView
-            android:id="@+id/first_actor"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-
-            android:src="@drawable/actor_1"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@+id/second_actor"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="@id/content_start"
-            app:layout_constraintTop_toBottomOf="@id/tv_cast" />
-
-        <ImageView
-            android:id="@+id/second_actor"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/actor_2"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@+id/third_actor"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/first_actor"
-            app:layout_constraintTop_toBottomOf="@id/tv_cast" />
-
-
-        <ImageView
-            android:id="@+id/third_actor"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/actor_3"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@+id/fourth_actor"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/second_actor"
-            app:layout_constraintTop_toBottomOf="@id/tv_cast" />
-
-        <ImageView
-            android:id="@+id/fourth_actor"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/actor_4"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@+id/content_end"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/third_actor"
-            app:layout_constraintTop_toBottomOf="@id/tv_cast" />
-
-        <TextView
-            android:id="@+id/tv_first_actor"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="1:1"
-            android:text="@string/ruffalo"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/first_actor"
-            app:layout_constraintStart_toStartOf="@+id/first_actor"
-            app:layout_constraintTop_toBottomOf="@id/first_actor" />
+       
 
 
         <ImageView
@@ -293,6 +230,16 @@
             android:layout_height="0dp"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="300dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_actor_list"
+            android:layout_width="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_cast"
+            app:layout_constraintStart_toStartOf="@id/content_start"
+            app:layout_constraintEnd_toEndOf="@id/content_end"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
