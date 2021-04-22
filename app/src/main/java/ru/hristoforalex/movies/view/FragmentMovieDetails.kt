@@ -9,8 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.hristoforalex.movies.R
-import ru.hristoforalex.movies.data.DataSource
-import ru.hristoforalex.movies.model.Movie
+import ru.hristoforalex.movies.data.Movie
 import ru.hristoforalex.movies.view.recyclers.AdapterActors
 
 class FragmentMovieDetails : Fragment() {
@@ -38,13 +37,14 @@ class FragmentMovieDetails : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         actorRecycler = view.findViewById(R.id.rv_actor_list)
-        actorRecycler?.adapter = AdapterActors(DataSource.actors)
-        actorRecycler?.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        //TODO: add actors and fix adapter
+        actorRecycler?.adapter = AdapterActors()
+        actorRecycler?.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         actorRecycler?.setHasFixedSize(true)
 
-        // для панятия как делать передачу данных по клику  
         val image = view.findViewById<ImageView>(R.id.iv_image)
-        movie?.let { image.setImageResource(it.image) }
+//        movie?.let { image.setImageResource(it.image) }
 
     }
 

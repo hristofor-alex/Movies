@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import ru.hristoforalex.movies.R
-import ru.hristoforalex.movies.data.DataSource
-import ru.hristoforalex.movies.model.Movie
+import ru.hristoforalex.movies.data.Movie
+import ru.hristoforalex.movies.data.loadMovies
 import ru.hristoforalex.movies.view.recyclers.AdapterMovies
 import ru.hristoforalex.movies.view.recyclers.OnMovieItemClicked
 
@@ -18,9 +20,13 @@ class FragmentMovieList : Fragment() {
 
     private lateinit var movieRecycler: RecyclerView
     private var clickListener: OnMovieItemClicked? = null
+    private lateinit var movies: List<Movie>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        GlobalScope.launch {
+            movies = loadMovies(requireContext())
+        }
     }
 
     override fun onCreateView(
@@ -35,7 +41,7 @@ class FragmentMovieList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         movieRecycler = view.findViewById(R.id.rv_movie_list)
-        movieRecycler?.adapter = AdapterMovies(DataSource.movies, object : OnMovieItemClicked {
+        movieRecycler?.adapter = AdapterMovies(movies, object : OnMovieItemClicked {
             override fun openDetailFragments(movie: Movie) {
                 requireFragmentManager().beginTransaction().apply {
                     replace(R.id.container, FragmentMovieDetails.newInstance(movie))
@@ -44,7 +50,6 @@ class FragmentMovieList : Fragment() {
                 }
             }
         })
-//        movieRecycler?.adapter = AdapterMovies(DataSource.movies, clickListener)
 
         movieRecycler?.layoutManager = GridLayoutManager(requireContext(), 2)
         movieRecycler?.setHasFixedSize(true)
