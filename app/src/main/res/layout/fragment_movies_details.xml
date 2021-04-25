@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:background="@color/transparent"
-            android:drawableLeft="@drawable/arrow_back"
+            android:drawableStart="@drawable/arrow_back"
             android:fontFamily="@font/roboto_light"
             android:paddingStart="0dp"
             android:text="@string/back"

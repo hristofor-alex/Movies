@@ -52,11 +52,11 @@ class ViewHolderMovie(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
             .into(poster)
         minimumAge.text = movie.minimumAge.toString()
         title.text = movie.title
-        runtime.setText(movie.runtime)
+        runtime.text = movie.runtime.toString()
         genres.text = movie.genres.joinToString(", ") { genre -> genre.name }
-        reviewsCount.setText(movie.numberOfRatings)
+        reviewsCount.text = movie.numberOfRatings.toString()
 
-//        when (movie.stars) {
+//        when (movie.numberOfRatings) {
 //            1 -> {
 //                starOne.setImageResource(R.drawable.fill_star_mini)
 //                starTwo.setImageResource(R.drawable.empty_star)

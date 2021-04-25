@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import ru.hristoforalex.movies.R
-import ru.hristoforalex.movies.model.Actor
+import ru.hristoforalex.movies.data.Actor
 
 class AdapterActors(
     private val actors: List<Actor>
@@ -29,11 +30,13 @@ class AdapterActors(
 }
 
 class ViewHolderActor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val actorIcon = itemView.findViewById<ImageView>(R.id.iv_actor_icon)
-    val actorName = itemView.findViewById<TextView>(R.id.tv_actor_name)
+    val picture = itemView.findViewById<ImageView>(R.id.iv_actor_icon)
+    val name = itemView.findViewById<TextView>(R.id.tv_actor_name)
 
     fun onBind(data: Actor) {
-        actorIcon.setImageResource(data.icon)
-        actorName.setText(data.name)
+        Glide.with(itemView.context)
+            .load(data.picture)
+            .into(picture)
+        name.text = data.name
     }
 }

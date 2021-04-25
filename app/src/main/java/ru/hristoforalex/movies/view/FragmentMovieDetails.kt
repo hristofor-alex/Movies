@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.hristoforalex.movies.R
+import ru.hristoforalex.movies.data.Actor
 import ru.hristoforalex.movies.data.Movie
 import ru.hristoforalex.movies.view.recyclers.AdapterActors
 
@@ -16,11 +16,13 @@ class FragmentMovieDetails : Fragment() {
 
     private lateinit var actorRecycler: RecyclerView
     private lateinit var movie: Movie
+    private lateinit var actors: List<Actor>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         movie = arguments?.getParcelable("movie") ?: throw NullPointerException()
+        actors = movie.actors
     }
 
     override fun onCreateView(
@@ -37,15 +39,10 @@ class FragmentMovieDetails : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         actorRecycler = view.findViewById(R.id.rv_actor_list)
-        //TODO: add actors and fix adapter
-        actorRecycler?.adapter = AdapterActors()
+        actorRecycler?.adapter = AdapterActors(actors)
         actorRecycler?.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         actorRecycler?.setHasFixedSize(true)
-
-        val image = view.findViewById<ImageView>(R.id.iv_image)
-//        movie?.let { image.setImageResource(it.image) }
-
     }
 
     companion object {
