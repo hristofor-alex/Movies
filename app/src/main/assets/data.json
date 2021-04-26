@@ -35,7 +35,7 @@
     "video": false,
     "poster_path": "https://image.tmdb.org/t/p/w342/ugZW8ocsrfgI95pnQ7wrmKDxIe.jpg",
     "id": 724989,
-    "adult": false,
+    "adult": true,
     "backdrop_path": "https://image.tmdb.org/t/p/w342/86L8wqGMDbwURPni2t7FQ0nDjsH.jpg",
     "original_language": "en",
     "original_title": "Hard Kill",
@@ -53,7 +53,7 @@
       53185,
       1075049
     ],
-    "vote_average": 5,
+    "vote_average": 3,
     "overview": "The work of billionaire tech CEO Donovan Chalmers is so valuable that he hires mercenaries to protect it, and a terrorist group kidnaps his daughter just to get it.",
     "release_date": "2020-10-23"
   },

@@ -4,15 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners
 import ru.hristoforalex.movies.R
 import ru.hristoforalex.movies.data.Movie
 
 class AdapterMovies(
-    private val movies: List<Movie>,
-    private val clickListener: OnMovieItemClicked?
+        private val movies: List<Movie>,
+        private val clickListener: OnMovieItemClicked?
 ) : RecyclerView.Adapter<ViewHolderMovie>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderMovie {
@@ -34,67 +36,29 @@ class AdapterMovies(
 }
 
 class ViewHolderMovie(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
-    private val poster = viewItem.findViewById<ImageView>(R.id.iv_image)
+    private val poster = viewItem.findViewById<ImageView>(R.id.iv_poster)
     private val minimumAge = viewItem.findViewById<TextView>(R.id.tv_age)
     private val title = viewItem.findViewById<TextView>(R.id.tv_movieName)
-    private val runtime = viewItem.findViewById<TextView>(R.id.tv_time)
-    private val genres = viewItem.findViewById<TextView>(R.id.tv_category)
-    private val starOne = viewItem.findViewById<ImageView>(R.id.star_one)
-    private val starTwo = viewItem.findViewById<ImageView>(R.id.star_two)
-    private val starThree = viewItem.findViewById<ImageView>(R.id.star_three)
-    private val starFour = viewItem.findViewById<ImageView>(R.id.star_four)
-    private val starFive = viewItem.findViewById<ImageView>(R.id.star_five)
+    private val runtime = viewItem.findViewById<TextView>(R.id.tv_runtime)
+    private val genres = viewItem.findViewById<TextView>(R.id.tv_genre)
+    private val rating = viewItem.findViewById<RatingBar>(R.id.ratingBar)
     private val reviewsCount = viewItem.findViewById<TextView>(R.id.tv_countOfReview)
+    private val cornerRadius = 60.0f
 
     fun onBind(movie: Movie) {
         Glide.with(itemView.context)
-            .load(movie.poster)
-            .into(poster)
-        minimumAge.text = movie.minimumAge.toString()
+                .load(movie.poster)
+                .transform(GranularRoundedCorners(
+                        cornerRadius, cornerRadius, 0f, 0f))
+                .into(poster)
+
+        minimumAge.text = movie.minimumAge.toString() + "+"
         title.text = movie.title
         runtime.text = movie.runtime.toString()
         genres.text = movie.genres.joinToString(", ") { genre -> genre.name }
         reviewsCount.text = movie.numberOfRatings.toString()
-
-//        when (movie.numberOfRatings) {
-//            1 -> {
-//                starOne.setImageResource(R.drawable.fill_star_mini)
-//                starTwo.setImageResource(R.drawable.empty_star)
-//                starThree.setImageResource(R.drawable.empty_star)
-//                starFour.setImageResource(R.drawable.empty_star)
-//                starFive.setImageResource(R.drawable.empty_star)
-//            }
-//            2 -> {
-//                starOne.setImageResource(R.drawable.fill_star_mini)
-//                starTwo.setImageResource(R.drawable.fill_star_mini)
-//                starThree.setImageResource(R.drawable.empty_star_mini)
-//                starFour.setImageResource(R.drawable.empty_star_mini)
-//                starFive.setImageResource(R.drawable.empty_star_mini)
-//            }
-//            3 -> {
-//                starOne.setImageResource(R.drawable.fill_star_mini)
-//                starTwo.setImageResource(R.drawable.fill_star_mini)
-//                starThree.setImageResource(R.drawable.fill_star_mini)
-//                starFour.setImageResource(R.drawable.empty_star_mini)
-//                starFive.setImageResource(R.drawable.empty_star_mini)
-//            }
-//            4 -> {
-//                starOne.setImageResource(R.drawable.fill_star_mini)
-//                starTwo.setImageResource(R.drawable.fill_star_mini)
-//                starThree.setImageResource(R.drawable.fill_star_mini)
-//                starFour.setImageResource(R.drawable.fill_star_mini)
-//                starFive.setImageResource(R.drawable.empty_star_mini)
-//            }
-//            5 -> {
-//                starOne.setImageResource(R.drawable.fill_star_mini)
-//                starTwo.setImageResource(R.drawable.fill_star_mini)
-//                starThree.setImageResource(R.drawable.fill_star_mini)
-//                starFour.setImageResource(R.drawable.fill_star_mini)
-//                starFive.setImageResource(R.drawable.fill_star_mini)
-//            }
-//        }
-
-
+        rating.rating = movie.ratings
+        runtime.text = movie.runtime.toString() + " min"
     }
 
 }

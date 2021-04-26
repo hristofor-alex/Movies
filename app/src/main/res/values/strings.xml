@@ -11,7 +11,8 @@
     <string name="cast">Cast</string>
     <string name="movielist">Movie List</string>
     <string name="nameMini">Avengers: End Game</string>
-    <string name="time">137 MIN</string>
+    <string name="time">137</string>
+    <string name="min">min</string>
     <string name="robert_downey_jr">Robert Downey Jr.</string>
     <string name="chris_evans">Chris Evans</string>
     <string name="mark_ruffalo">Mark Ruffalo</string>

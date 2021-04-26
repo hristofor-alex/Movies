@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/main">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/iv_image"
+            android:id="@+id/iv_poster"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/orig"
@@ -66,7 +65,7 @@
             android:text="@string/age"
             android:textColor="@color/white"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/iv_image"
+            app:layout_constraintBottom_toBottomOf="@id/iv_poster"
             app:layout_constraintStart_toStartOf="@id/content_start"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.8" />
@@ -80,14 +79,14 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             android:textColor="@color/white"
             app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toBottomOf="@id/iv_image"
+            app:layout_constraintBottom_toBottomOf="@id/iv_poster"
             app:layout_constraintEnd_toStartOf="@id/content_end"
             app:layout_constraintStart_toStartOf="@id/content_start"
             app:layout_constraintTop_toBottomOf="@id/tv_age"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/tv_category"
+            android:id="@+id/tv_genre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
@@ -97,18 +96,15 @@
             app:layout_constraintStart_toStartOf="@id/content_start"
             app:layout_constraintTop_toBottomOf="@id/tv_movieName" />
 
-        <androidx.constraintlayout.helper.widget.Flow
-            android:id="@+id/rating"
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@style/smallRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp"
-            android:paddingStart="0dp"
-            app:constraint_referenced_ids="star_one,star_two,star_three,star_four,star_five"
-            app:flow_horizontalGap="3dp"
-            app:flow_verticalAlign="center"
+            tools:rating="4"
             app:layout_constraintStart_toStartOf="@id/content_start"
-            app:layout_constraintTop_toBottomOf="@id/tv_category" />
+            app:layout_constraintTop_toBottomOf="@id/tv_genre" />
+
 
         <TextView
             android:id="@+id/tv_countOfReview"
@@ -118,9 +114,9 @@
             android:text="@string/count"
             android:textColor="@color/gray"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/star_five"
-            app:layout_constraintStart_toEndOf="@id/rating"
-            app:layout_constraintTop_toTopOf="@+id/star_five" />
+            app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+            app:layout_constraintStart_toEndOf="@id/ratingBar"
+            app:layout_constraintTop_toTopOf="@+id/ratingBar" />
 
         <TextView
             android:id="@+id/tv_reviews"
@@ -134,7 +130,7 @@
             android:textSize="14sp"
             app:layout_constraintBaseline_toBaselineOf="@id/tv_countOfReview"
             app:layout_constraintStart_toEndOf="@id/tv_countOfReview"
-            app:layout_constraintTop_toBottomOf="@id/tv_category" />
+            app:layout_constraintTop_toBottomOf="@id/tv_genre" />
 
 
         <TextView
@@ -147,7 +143,7 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/content_start"
-            app:layout_constraintTop_toBottomOf="@+id/rating" />
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
         <TextView
             android:id="@+id/tv_discribe"
@@ -174,41 +170,6 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/content_start"
             app:layout_constraintTop_toBottomOf="@+id/tv_discribe" />
-
-       
-
-
-        <ImageView
-            android:id="@+id/star_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/fill_star" />
-
-        <ImageView
-            android:id="@+id/star_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/fill_star" />
-
-        <ImageView
-            android:id="@+id/star_three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/fill_star" />
-
-        <ImageView
-            android:id="@+id/star_four"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/fill_star"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="42dp" />
-
-        <ImageView
-            android:id="@+id/star_five"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/empty_star" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/content_start"
