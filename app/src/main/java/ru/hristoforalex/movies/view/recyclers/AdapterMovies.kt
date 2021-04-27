@@ -18,7 +18,7 @@ class AdapterMovies(
 ) : RecyclerView.Adapter<ViewHolderMovie>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderMovie {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_movie, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_movie, parent, false)
         val holder = ViewHolderMovie(view)
         view.setOnClickListener {
             clickListener?.openDetailFragments(movies[holder.adapterPosition])
@@ -38,7 +38,7 @@ class AdapterMovies(
 class ViewHolderMovie(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
     private val poster = viewItem.findViewById<ImageView>(R.id.iv_poster)
     private val minimumAge = viewItem.findViewById<TextView>(R.id.tv_age)
-    private val title = viewItem.findViewById<TextView>(R.id.tv_movieName)
+    private val title = viewItem.findViewById<TextView>(R.id.tv_title)
     private val runtime = viewItem.findViewById<TextView>(R.id.tv_runtime)
     private val genres = viewItem.findViewById<TextView>(R.id.tv_genre)
     private val rating = viewItem.findViewById<RatingBar>(R.id.ratingBar)
@@ -48,7 +48,8 @@ class ViewHolderMovie(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
     fun onBind(movie: Movie) {
         Glide.with(itemView.context)
                 .load(movie.poster)
-                .transform(GranularRoundedCorners(
+                .transform(
+                    GranularRoundedCorners(
                         cornerRadius, cornerRadius, 0f, 0f))
                 .into(poster)
 

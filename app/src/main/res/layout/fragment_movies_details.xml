@@ -71,7 +71,7 @@
             app:layout_constraintVertical_bias="0.8" />
 
         <TextView
-            android:id="@+id/tv_movieName"
+            android:id="@+id/tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_black"
@@ -94,7 +94,7 @@
             android:textColor="@color/pink"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@id/content_start"
-            app:layout_constraintTop_toBottomOf="@id/tv_movieName" />
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -146,7 +146,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
         <TextView
-            android:id="@+id/tv_discribe"
+            android:id="@+id/tv_overview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -169,7 +169,7 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/content_start"
-            app:layout_constraintTop_toBottomOf="@+id/tv_discribe" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_overview" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/content_start"

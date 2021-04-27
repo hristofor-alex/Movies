@@ -7,6 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import ru.hristoforalex.movies.R
 import ru.hristoforalex.movies.data.Actor
 
@@ -14,14 +17,30 @@ class AdapterActors(
     private val actors: List<Actor>
 ) : RecyclerView.Adapter<ViewHolderActor>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderActor {
-        return ViewHolderActor(
-            LayoutInflater.from(parent.context).inflate(R.layout.list_item_actor, parent, false)
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderActor  {
+        return when (viewType) {
+            VIEW_TYPE_ACTORS ->
+                ViewHolderActorData(LayoutInflater.from(parent.context)
+                    .inflate(R.layout.view_holder_actor, parent, false))
+
+            else -> ViewHolderActorEmpty(LayoutInflater.from(parent.context)
+                .inflate(R.layout.view_holder_actor_empty, parent, false))
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (actors.size) {
+            0 -> VIEW_TYPE_EMPTY
+            else -> VIEW_TYPE_ACTORS
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolderActor, position: Int) {
-        holder.onBind(getItem(position))
+        when (holder) {
+            is ViewHolderActorData -> {holder.onBind(getItem(position)) }
+            is ViewHolderActorEmpty -> {{/* nothing to bind */ }}
+        }
+
     }
 
     override fun getItemCount(): Int = actors.size
@@ -29,14 +48,32 @@ class AdapterActors(
     private fun getItem(position: Int): Actor = actors[position]
 }
 
-class ViewHolderActor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+abstract class ViewHolderActor(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+class ViewHolderActorEmpty(itemView: View) : ViewHolderActor(itemView)
+
+class ViewHolderActorData(itemView: View) : ViewHolderActor(itemView) {
     val picture = itemView.findViewById<ImageView>(R.id.iv_actor_icon)
     val name = itemView.findViewById<TextView>(R.id.tv_actor_name)
 
     fun onBind(data: Actor) {
+
+        val cornerRadius = 30
+        val imageOption = RequestOptions()
+            .transform(
+                CenterCrop(),
+                RoundedCorners(cornerRadius)
+            )
+
         Glide.with(itemView.context)
             .load(data.picture)
+            .apply(imageOption)
             .into(picture)
+
         name.text = data.name
     }
 }
+
+
+private const val VIEW_TYPE_ACTORS = 0
+private const val VIEW_TYPE_EMPTY = 1

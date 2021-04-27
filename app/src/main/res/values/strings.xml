@@ -17,5 +17,6 @@
     <string name="chris_evans">Chris Evans</string>
     <string name="mark_ruffalo">Mark Ruffalo</string>
     <string name="chris_hemsworth">Chris Hemsworth</string>
+    <string name="no_actors_text">No info about actors yet</string>
 
 </resources>
