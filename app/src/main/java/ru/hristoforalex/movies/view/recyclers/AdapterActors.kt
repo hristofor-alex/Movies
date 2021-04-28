@@ -14,17 +14,17 @@ import ru.hristoforalex.movies.R
 import ru.hristoforalex.movies.data.Actor
 
 class AdapterActors(
-    private val actors: List<Actor>
+        private val actors: List<Actor>
 ) : RecyclerView.Adapter<ViewHolderActor>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderActor  {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderActor {
         return when (viewType) {
             VIEW_TYPE_ACTORS ->
                 ViewHolderActorData(LayoutInflater.from(parent.context)
-                    .inflate(R.layout.view_holder_actor, parent, false))
+                        .inflate(R.layout.view_holder_actor, parent, false))
 
             else -> ViewHolderActorEmpty(LayoutInflater.from(parent.context)
-                .inflate(R.layout.view_holder_actor_empty, parent, false))
+                    .inflate(R.layout.view_holder_actor_empty, parent, false))
         }
     }
 
@@ -37,13 +37,22 @@ class AdapterActors(
 
     override fun onBindViewHolder(holder: ViewHolderActor, position: Int) {
         when (holder) {
-            is ViewHolderActorData -> {holder.onBind(getItem(position)) }
-            is ViewHolderActorEmpty -> {{/* nothing to bind */ }}
+            is ViewHolderActorData -> {
+                holder.onBind(getItem(position))
+            }
+            is ViewHolderActorEmpty -> {
+                {/* nothing to bind */ }
+            }
         }
 
     }
 
-    override fun getItemCount(): Int = actors.size
+    // пока не написал эту логику не работала подмена layout -ов
+    // не могу понять как оно работает и где использует еденицу
+    override fun getItemCount(): Int = when (actors.size) {
+        0 -> 1
+        else -> actors.size
+    }
 
     private fun getItem(position: Int): Actor = actors[position]
 }
@@ -60,20 +69,20 @@ class ViewHolderActorData(itemView: View) : ViewHolderActor(itemView) {
 
         val cornerRadius = 30
         val imageOption = RequestOptions()
-            .transform(
-                CenterCrop(),
-                RoundedCorners(cornerRadius)
-            )
+                .transform(
+                        CenterCrop(),
+                        RoundedCorners(cornerRadius)
+                )
 
         Glide.with(itemView.context)
-            .load(data.picture)
-            .apply(imageOption)
-            .into(picture)
+                .load(data.picture)
+                .apply(imageOption)
+                .into(picture)
 
         name.text = data.name
     }
 }
 
 
-private const val VIEW_TYPE_ACTORS = 0
-private const val VIEW_TYPE_EMPTY = 1
+private const val VIEW_TYPE_EMPTY = 0
+private const val VIEW_TYPE_ACTORS = 1

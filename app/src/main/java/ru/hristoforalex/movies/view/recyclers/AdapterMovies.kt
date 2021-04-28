@@ -33,6 +33,8 @@ class AdapterMovies(
     override fun getItemCount(): Int = movies.size
 
     private fun getItem(position: Int) = movies[position]
+
+    override fun getItemId(position: Int): Long = position.toLong()
 }
 
 class ViewHolderMovie(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
@@ -43,7 +45,7 @@ class ViewHolderMovie(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
     private val genres = viewItem.findViewById<TextView>(R.id.tv_genre)
     private val rating = viewItem.findViewById<RatingBar>(R.id.ratingBar)
     private val reviewsCount = viewItem.findViewById<TextView>(R.id.tv_countOfReview)
-    private val cornerRadius = 60.0f
+    private val cornerRadius = 20.0f
 
     fun onBind(movie: Movie) {
         Glide.with(itemView.context)
@@ -58,7 +60,7 @@ class ViewHolderMovie(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
         runtime.text = movie.runtime.toString()
         genres.text = movie.genres.joinToString(", ") { genre -> genre.name }
         reviewsCount.text = movie.numberOfRatings.toString()
-        rating.rating = movie.ratings
+        rating.rating = movie.ratings / 2
         runtime.text = movie.runtime.toString() + " min"
     }
 

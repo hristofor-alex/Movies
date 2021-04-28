@@ -1,14 +1,18 @@
 package ru.hristoforalex.movies.view
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.hristoforalex.movies.R
 import ru.hristoforalex.movies.data.Movie
@@ -21,18 +25,25 @@ class FragmentMovieList : Fragment() {
     private lateinit var movieRecycler: RecyclerView
     private var clickListener: OnMovieItemClicked? = null
     private lateinit var movies: List<Movie>
+    private val handlerException = CoroutineExceptionHandler { coroutineContext, throwable ->
+        Log.d(TAG, "exceptionHandler: ${throwable.message}")
+    }
+    private val scope = CoroutineScope(
+            Dispatchers.Default
+                    + handlerException
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        GlobalScope.launch {
+        scope.launch {
             movies = loadMovies(requireContext())
         }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_movie_list, container, false)
     }
@@ -53,8 +64,9 @@ class FragmentMovieList : Fragment() {
 
         movieRecycler?.layoutManager = GridLayoutManager(requireContext(), 2)
         movieRecycler?.setHasFixedSize(true)
-
+        //  movieRecycler?.adapter?.setHasStableIds(true)
     }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
