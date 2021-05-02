@@ -1,9 +1,11 @@
 package ru.hristoforalex.movies.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
@@ -16,9 +18,10 @@ import ru.hristoforalex.movies.R
 import ru.hristoforalex.movies.data.Actor
 import ru.hristoforalex.movies.data.Movie
 import ru.hristoforalex.movies.view.recyclers.AdapterActors
+import ru.hristoforalex.movies.view.recyclers.FragmentBackListener
 
 class FragmentMovieDetails : Fragment() {
-
+    private var clickListener: FragmentBackListener? = null
     private lateinit var actorRecycler: RecyclerView
     private lateinit var movie: Movie
     private lateinit var actors: List<Actor>
@@ -31,9 +34,9 @@ class FragmentMovieDetails : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
 
         return inflater.inflate(R.layout.fragment_movies_details, container, false)
@@ -43,7 +46,7 @@ class FragmentMovieDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val backButton = view.findViewById<Button>(R.id.b_back)
+        val backButton = view.findViewById<Button>(R.id.b_back)
         val backdrop = view.findViewById<ImageView>(R.id.iv_poster)
         val minimumAge = view.findViewById<TextView>(R.id.tv_age)
         val title = view.findViewById<TextView>(R.id.tv_title)
@@ -70,6 +73,21 @@ class FragmentMovieDetails : Fragment() {
         actorRecycler?.layoutManager =
                 LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         actorRecycler?.setHasFixedSize(true)
+
+        backButton.setOnClickListener {
+            clickListener?.back()
+        }
+    }
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is FragmentBackListener) clickListener = context
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        clickListener = null
     }
 
     companion object {

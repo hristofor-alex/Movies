@@ -3,8 +3,9 @@ package ru.hristoforalex.movies.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.hristoforalex.movies.R
+import ru.hristoforalex.movies.view.recyclers.FragmentBackListener
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), FragmentBackListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -12,8 +13,12 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().apply {
                 add(R.id.container, FragmentMovieList())
-                    .commit()
+                        .commit()
             }
         }
+    }
+
+    override fun back() {
+        supportFragmentManager.popBackStack()
     }
 }

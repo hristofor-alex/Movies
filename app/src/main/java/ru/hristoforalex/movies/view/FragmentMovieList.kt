@@ -10,10 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import ru.hristoforalex.movies.R
 import ru.hristoforalex.movies.data.Movie
 import ru.hristoforalex.movies.data.loadMovies
@@ -51,6 +48,7 @@ class FragmentMovieList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         movieRecycler = view.findViewById(R.id.rv_movie_list)
         movieRecycler?.adapter = AdapterMovies(movies, object : OnMovieItemClicked {
             override fun openDetailFragments(movie: Movie) {
@@ -76,6 +74,7 @@ class FragmentMovieList : Fragment() {
     override fun onDetach() {
         super.onDetach()
         clickListener = null
+        scope.cancel()
     }
 
     companion object {
