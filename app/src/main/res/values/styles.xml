@@ -12,10 +12,15 @@
         <item name="fontFamily">@font/roboto_regular</item>
     </style>
 
-    <style name="CustomRatingBarStyle" parent="Widget.AppCompat.RatingBar">
-        <item name="android:progressDrawable">@drawable/custom_rating_bar</item>
-        <item name="android:minHeight">15dp</item>
-        <item name="android:maxHeight">47dp</item>
+    <style name="smallRatingBar" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="android:progressBackgroundTint">@color/color_star_empty</item>
+        <item name="android:progressTint">@color/color_star_full</item>
+        <item name="android:secondaryProgressTint">@color/color_star_full</item>
+        <item name="android:numStars">5</item>
+        <item name="android:rating">0</item>
+        <item name="android:stepSize">0.1</item>
+        <item name="android:isIndicator">true</item>
+
     </style>
 
 
