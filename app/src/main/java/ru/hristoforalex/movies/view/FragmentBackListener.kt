@@ -1,4 +1,4 @@
-package ru.hristoforalex.movies.view.recyclers
+package ru.hristoforalex.movies.view
 
 interface FragmentBackListener {
     fun back()

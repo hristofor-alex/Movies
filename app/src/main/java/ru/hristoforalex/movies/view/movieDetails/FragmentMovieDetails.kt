@@ -1,4 +1,4 @@
-package ru.hristoforalex.movies.view
+package ru.hristoforalex.movies.view.movieDetails
 
 import android.content.Context
 import android.os.Bundle
@@ -17,8 +17,8 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import ru.hristoforalex.movies.R
 import ru.hristoforalex.movies.data.Actor
 import ru.hristoforalex.movies.data.Movie
+import ru.hristoforalex.movies.view.FragmentBackListener
 import ru.hristoforalex.movies.view.recyclers.AdapterActors
-import ru.hristoforalex.movies.view.recyclers.FragmentBackListener
 
 class FragmentMovieDetails : Fragment() {
     private var clickListener: FragmentBackListener? = null

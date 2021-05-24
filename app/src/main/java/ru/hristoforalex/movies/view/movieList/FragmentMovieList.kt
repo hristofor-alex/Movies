@@ -1,4 +1,4 @@
-package ru.hristoforalex.movies.view
+package ru.hristoforalex.movies.view.movieList
 
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -14,6 +14,7 @@ import kotlinx.coroutines.*
 import ru.hristoforalex.movies.R
 import ru.hristoforalex.movies.data.Movie
 import ru.hristoforalex.movies.data.loadMovies
+import ru.hristoforalex.movies.view.movieDetails.FragmentMovieDetails
 import ru.hristoforalex.movies.view.recyclers.AdapterMovies
 import ru.hristoforalex.movies.view.recyclers.OnMovieItemClicked
 
@@ -62,7 +63,6 @@ class FragmentMovieList : Fragment() {
 
         movieRecycler?.layoutManager = GridLayoutManager(requireContext(), 2)
         movieRecycler?.setHasFixedSize(true)
-        //  movieRecycler?.adapter?.setHasStableIds(true)
     }
 
 

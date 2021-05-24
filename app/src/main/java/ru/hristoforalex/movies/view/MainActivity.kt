@@ -3,7 +3,7 @@ package ru.hristoforalex.movies.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.hristoforalex.movies.R
-import ru.hristoforalex.movies.view.recyclers.FragmentBackListener
+import ru.hristoforalex.movies.view.movieList.FragmentMovieList
 
 class MainActivity : AppCompatActivity(), FragmentBackListener {
 
